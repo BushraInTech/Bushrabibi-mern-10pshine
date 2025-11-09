@@ -55,7 +55,7 @@ const SearchBar = () => {
           </div>
           <input
             type="search"
-            placeholder="Search for Notes..."
+            placeholder="Search notes"
             className="flex-1 bg-gray-800 text-white p-3 text-lg outline-none placeholder-gray-400"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

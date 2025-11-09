@@ -27,9 +27,9 @@ const Login = () => {
       const result = await axios.post("http://localhost:6969/auth/login", user);
 
       if (result.data.status === "Error") {
-        toast.error("❌ Wrong email or password!");
+        toast.error("Wrong email or password!");
       } else {
-        toast.success("✅ Logged in successfully!");
+        toast.success(" Logged in successfully!");
         dispatch(setUserData(result.data));
         setTimeout(() => navigate("/"), 1200);
       }

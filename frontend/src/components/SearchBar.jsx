@@ -132,7 +132,7 @@ const SearchBar = () => {
               {new Date(selectedNote.createdAt).toLocaleDateString()} <br />
               Time:{" "}
               {new Date(selectedNote.createdAt).toLocaleTimeString([], {
-                hour: "2-digit",
+                hour: "3-digit",
                 minute: "2-digit",
               })}
             </p>

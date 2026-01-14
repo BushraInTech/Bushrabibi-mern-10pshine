@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-gray-50 py-12 px-5 gap-10 lg:gap-20">
       {/* Image Section */}
@@ -56,6 +59,16 @@ const About = () => {
             boundaries. We aim to break down barriers to academic success,
             making valuable study materials accessible to everyone.
           </p>
+        </div>
+
+        {/* New Feature: Contact Button */}
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={() => navigate("/contact")}
+            className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full shadow-md transition duration-200"
+          >
+            Contact Us 📧
+          </button>
         </div>
       </div>
     </div>

@@ -22,7 +22,6 @@ const Faq = () => {
       answer:
         "Absolutely. We prioritize the security and privacy of your documents. MyNotes employs advanced encryption and security measures to ensure the confidentiality of your uploaded materials.",
     },
-    
     {
       question: "How can I search for specific study materials on MyNotes?",
       answer:
@@ -33,13 +32,17 @@ const Faq = () => {
       answer:
         "Absolutely. MyNotes offers real-time collaboration tools, allowing you to work on group projects and assignments with your peers. Share, edit, and collaborate seamlessly.",
     },
-    
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleFaq = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  const copyAnswer = (answer) => {
+    navigator.clipboard.writeText(answer);
+    alert("Answer copied to clipboard! 📋");
   };
 
   return (
@@ -52,7 +55,7 @@ const Faq = () => {
           {faqs.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md p-5 hover:shadow-xl transition-all cursor-pointer"
+              className="bg-white rounded-xl shadow-md p-5 hover:shadow-xl transition-all cursor-pointer hover:bg-indigo-50"
               onClick={() => toggleFaq(index)}
             >
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 flex justify-between items-center">
@@ -61,11 +64,21 @@ const Faq = () => {
                   {activeIndex === index ? "-" : "+"}
                 </span>
               </h2>
-              {activeIndex === index && (
-                <p className="mt-3 text-gray-700 text-sm sm:text-base">
-                  {item.answer}
-                </p>
-              )}
+              <div
+                className={`mt-3 text-gray-700 text-sm sm:text-base transition-all duration-300 overflow-hidden ${
+                  activeIndex === index ? "max-h-96" : "max-h-0"
+                }`}
+              >
+                <p>{item.answer}</p>
+                {activeIndex === index && (
+                  <button
+                    onClick={() => copyAnswer(item.answer)}
+                    className="mt-2 px-3 py-1 bg-indigo-500 text-white text-xs rounded hover:bg-indigo-600 transition"
+                  >
+                    Copy Answer
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>

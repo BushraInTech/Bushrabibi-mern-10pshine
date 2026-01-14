@@ -7,7 +7,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("🧠 Redux user data:", user);
+    console.log("Redux user data:", user);
   }, [user]);
 
   if (!user) {
@@ -31,7 +31,7 @@ const Profile = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-900 via-indigo-900 to-black text-white p-6">
       {/* Profile Card */}
-      <div className="bg-gray-800/60 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700 hover:shadow-sky-400/30 transition duration-300">
+      <div className="bg-gray-800/60 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700 hover:shadow-sky-400/40 transition duration-300">
         {/* Profile Image */}
         <div className="flex justify-center">
           <div className="h-[160px] w-[160px] rounded-full overflow-hidden border-4 border-sky-400 shadow-lg shadow-sky-400/40 transition-transform duration-300 hover:scale-105">
@@ -60,13 +60,13 @@ const Profile = () => {
         {/* Extra Info Section */}
         <div className="mt-6 flex flex-col gap-2 text-sm text-gray-400 border-t border-gray-700 pt-4">
           <p>
-            📧 <span className="text-white">{user.userEmail}</span>
+            <span className="text-white">{user.userEmail}</span>
           </p>
           <p>
-            📱{" "}
-            <span className="text-white">
-              {user.userMobile || "No mobile number added"}
-            </span>
+            📱 <span className="text-white">{user.userMobile || "Not added"}</span>
+          </p>
+          <p>
+            <span className="text-white">{user.userWebsite || "No website"}</span>
           </p>
         </div>
 

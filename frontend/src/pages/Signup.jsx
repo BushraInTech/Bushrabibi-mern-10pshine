@@ -16,6 +16,7 @@ const Signup = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const validatePassword = (password) => {
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
@@ -33,6 +34,7 @@ const Signup = () => {
     }
 
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("firstName", firstName);
       formData.append("lastName", lastName);
@@ -48,11 +50,13 @@ const Signup = () => {
       });
 
       console.log("Data:", result);
-      toast.success("✅ User registered successfully!");
+      toast.success("User registered successfully!");
       setTimeout(() => navigate("/login"), 1500);
     } catch (error) {
       console.log("Failed to Register User:", error);
       toast.error(error.response?.data?.message || "Signup failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,6 +69,9 @@ const Signup = () => {
         onSubmit={registerUser}
       >
         <h1 className="text-2xl font-black text-center text-gray-700">Register</h1>
+        <p className="text-center text-gray-500 text-sm mb-2">
+          Create your account and start managing notes easily ✨
+        </p>
 
         <div className="flex gap-4">
           <div className="flex flex-col w-1/2">
@@ -166,9 +173,12 @@ const Signup = () => {
 
         <button
           type="submit"
-          className="rounded-lg bg-blue-500 px-5 py-2 font-bold text-white hover:bg-blue-600 transition-all"
+          disabled={loading}
+          className={`rounded-lg px-5 py-2 font-bold text-white transition-all ${
+            loading ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+          }`}
         >
-          Register
+          {loading ? "Registering..." : "Register"}
         </button>
 
         <div className="text-center text-sm">
